@@ -100,9 +100,12 @@ class ContractExtractor:
             return None
 
         value_lower = value.lower().strip()
-        if re.fullmatch(r"\d{1,3}\s+days", value_lower):
-            return f"Net {re.search(r'(\d{1,3})', value_lower).group(1)}"
-        return value.title()
+
+    if re.fullmatch(r"\d{1,3}\s+days", value_lower):
+    match = re.search(r"(\d{1,3})", value_lower)
+    if match:
+        return "Net " + match.group(1)
+return value.title()
 
     def _extract_parties(self, text: str) -> List[str]:
         """
