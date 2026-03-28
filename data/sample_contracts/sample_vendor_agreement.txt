@@ -1,0 +1,19 @@
+VENDOR SERVICES AGREEMENT
+
+This Vendor Services Agreement is entered into between NBCUniversal and Production Vendor Ltd.
+
+Effective Date: January 15, 2024.
+
+The initial term of this Agreement shall be 12 months and shall automatically renew for successive 12 month periods unless terminated earlier.
+
+Payment Terms: Net 90.
+
+Either party may terminate this Agreement for cause only upon written notice.
+
+This Agreement shall be governed by the laws of California.
+
+The Vendor shall defend, indemnify, and hold harmless NBCUniversal from any and all claims, liabilities, damages, and losses without limitation.
+
+The parties acknowledge that confidential information may be disclosed under this Agreement.
+
+Vendor shall be the exclusive provider of the described production support services.
