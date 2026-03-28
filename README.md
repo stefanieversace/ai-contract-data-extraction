@@ -1,176 +1,227 @@
-# AI Contract Intelligence for Media Agreements
+# 🚀 AI Contract Intelligence for Media Agreements
 
-AI-powered workflow to extract, validate, and risk-flag key terms from unstructured contracts using LLMs.
+<p align="center">
+  <b>AI-powered pipeline for extracting, validating, and risk-flagging contract data</b><br>
+  Built for real-world media, vendor, and operational workflows
+</p>
 
-## Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python">
+  <img src="https://img.shields.io/badge/AI-LLM%20Ready-purple?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Focus-Contract%20Intelligence-orange?style=for-the-badge">
+</p>
+
+---
+
+## 🧠 Overview
 
 Media, production, and vendor agreements are often lengthy, inconsistent, and time-consuming to review manually.
 
-This project demonstrates an AI-assisted workflow that:
+This project demonstrates an **end-to-end AI-assisted workflow** that:
 
-- Extracts structured contract data from unstructured documents
-- Validates outputs against a defined schema
-- Flags high-risk clauses and missing terms
-- Prepares outputs for human analyst review
+- extracts structured contract data from unstructured text  
+- validates outputs against a defined schema  
+- applies rule-based risk detection  
+- produces analyst-ready outputs for review  
 
-The goal is to simulate a real-world AI system that supports faster, more consistent contract analysis in media and operational environments.
+💡 Designed to simulate how AI systems can support **real operational and decision-making workflows**.
 
-## Key Features
+---
 
-- Structured data extraction using LLMs
-- JSON schema validation for consistent outputs
-- Confidence scoring for extracted fields
-- Rule-based risk flagging engine
-- Human-in-the-loop review workflow
-- Evaluation on sample agreements
-- Designed for media, vendor, and licensing contracts
+## ⚙️ End-to-End Pipeline
 
-## Example Workflow
-```
+
 Contract Document
-        ↓
-Preprocessing
-        ↓
-LLM Extraction (structured JSON)
-        ↓
-Schema Validation
-        ↓
+↓
+Extraction (Pattern / LLM-ready)
+↓
+Validation & Normalisation
+↓
 Risk Flagging Engine
-        ↓
-Confidence Scoring
-        ↓
-Analyst Review Output
-```
+↓
+Final Analyst Output (JSON + Tables)
 
-## Example Output
 
-```
-{
-  "agreement_type": "Vendor Services Agreement",
-  "parties": ["NBCUniversal", "Production Vendor Ltd"],
-  "effective_date": "2024-01-15",
-  "term_length": "12 months",
-  "payment_terms": "Net 90",
-  "auto_renewal": true,
-  "termination_clause": "Termination for cause only",
-  "governing_law": "California",
-  "key_risks": [
-    "Extended payment terms (>60 days)",
-    "Auto-renewal clause present",
-    "No termination for convenience"
-  ],
-  "confidence_score": 0.87
-}
-```
+---
 
-## Risk Flagging Logic
+## ✨ Key Features
 
-The system applies rule-based checks to highlight potential contractual risks:
+✔ Structured contract field extraction  
+✔ Schema-based validation  
+✔ Confidence scoring (field-level + overall)  
+✔ Rule-based risk detection  
+✔ Human-in-the-loop workflow design  
+✔ End-to-end pipeline execution  
+✔ Notebook demo for analyst-friendly output  
 
-- Payment terms greater than 60 days
-- Presence of auto-renewal clauses
-- Missing termination for convenience
-- Broad or one-sided indemnity clauses
-- Exclusivity clauses
-- Missing governing law
+---
 
-This transforms the workflow from simple extraction into decision-support for analysts.
+## 📸 Demo 
 
-## Evaluation
+<p align="center">
+  <img src="docs/screenshots/pipeline_run.png" width="700">
+</p>
 
-A small labelled dataset of sample agreements is used to assess performance:
+<p align="center">
+  <img src="docs/screenshots/final_output.png" width="700">
+</p>
 
-Metric	Result
-Field Extraction Accuracy	88%
-Missing Field Rate	9%
-Risk Flag Precision	85%
+<p align="center">
+  <img src="docs/screenshots/risk_flags.png" width="700">
+</p>
 
-The evaluation highlights both strengths and limitations of LLM-based extraction in structured document analysis.
+---
 
-## Tech Stack
-
-- Python
-- LLM APIs (OpenAI / similar)
-- JSON Schema / Pydantic
-- pandas
-- Jupyter Notebooks
-
-## Project Structure
+## 📂 Project Structure
 
 ```
 ai-contract-data-extraction/
 │
 ├── data/
-│   └── sample_contracts/
+│ └── sample_contracts/
 │
 ├── schemas/
-│   └── contract_schema.json
+│ └── contract_schema.json
 │
 ├── src/
-│   ├── extract.py
-│   ├── validate.py
-│   ├── risk_flags.py
-│   └── evaluate.py
+│ ├── extract.py
+│ ├── validate.py
+│ ├── risk_flags.py
+│ ├── pipeline.py
 │
 ├── outputs/
-│   ├── extracted_json/
-│   └── scored_results/
+│ ├── extracted_json/
+│ ├── scored_results/
+│ └── pipeline_run/
 │
 ├── notebooks/
-│   └── demo_walkthrough.ipynb
+│ └── demo_walkthrough.ipynb
 │
 ├── docs/
-│   ├── architecture.md
-│   ├── methodology.md
-│   └── limitations.md
+│ └── screenshots/
 │
 └── README.md
 ```
 
-## Analyst Insights
+---
 
-This project highlights a key limitation in LLM-based document processing:
+## ▶️ Usage
 
-LLMs can extract structured data effectively, but without validation and rule-based controls, outputs can be inconsistent or unreliable.
+Run the full pipeline:
 
-By combining:
+```bash
+python src/pipeline.py data/sample_contracts/sample_vendor_agreement.txt
+```
+
+## 📊 Output
+
+```
+outputs/pipeline_run/
+├── 01_extracted.json
+├── 02_validated.json
+└── 03_final_output.json
+```
+
+## 📊 Example Output
+
+```
+{
+  "agreement_type": "Vendor Services Agreement",
+  "parties": ["NBCUniversal", "Production Vendor Ltd"],
+  "effective_date": "January 15, 2024",
+  "term_length": "12 months",
+  "payment_terms": "Net 90",
+  "auto_renewal": true,
+  "governing_law": "California",
+  "exclusivity": true,
+  "confidence_score": 0.88,
+  "key_risks": [
+    "Extended payment terms (>60 days)",
+    "Auto-renewal clause present",
+    "Exclusivity clause present",
+    "Broad or one-sided indemnity language"
+  ]
+}
+```
+
+## 🚨 Risk Detection Engine
+
+This system identifies high-risk contract elements such as:
+
+⚠️Extended payment terms (>60 days)
+
+⚠️ Auto-renewal clauses
+  
+⚠️ Missing termination flexibility
+
+⚠️ Exclusivity clauses
+
+⚠️ Missing governing law
+
+⚠️ Broad indemnity language
+
+➡️ This transforms the project from data extraction → decision support system
+
+## 📓 Notebook Demo
+
+jupyter notebook notebooks/demo_walkthrough.ipynb
+
+Includes:
+
+- Full pipeline walkthrough
+- Structured outputs
+- Analyst-friendly tables
+- Risk insights
+
+## 🧠 Analyst Insights
+
+LLMs alone are not enough for reliable contract analysis.
+
+This project shows the importance of combining:
 
 - Structured schemas
-- Deterministic validation
-- Rule-based risk logic
+- Validation layers
+- Rule-based controls
+- Confidence scoring
 - Human review
 
-The system becomes significantly more practical for real-world use.
+➡️ Result: more reliable, auditable AI systems
 
-## Responsible AI Considerations
+## 🛡️ Responsible AI
 
-- No real confidential contracts are used
-- Sample data is synthetic or redacted
-- Outputs require human validation before use
-- LLM hallucination and ambiguity risks are acknowledged
-- Designed with auditability and transparency in mind
+- No real contracts used
+- Synthetic / redacted data only
+- Outputs require human validation
+- Designed for auditability
+- Acknowledges hallucination risk
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- Retrieval-Augmented Generation (RAG) over contract playbooks
-- Clause comparison across multiple agreements
-- Analyst dashboard for review and approvals
-- Prompt versioning and evaluation tracking
-- Integration with document management systems
+- LLM integration (OpenAI / RAG pipeline)
+- Contract clause comparison engine
+- Streamlit dashboard for analysts
+- Evaluation framework (accuracy metrics)
+- Real-time document ingestion
 
-## Why This Project Matters
+## 💼 Why This Project Matters
 
-This project demonstrates how AI can move beyond simple text generation into structured, auditable workflows that support real business operations.
+This project demonstrates how AI can be applied to:
 
-It reflects practical applications of AI in:
+- Contract intelligence
+- Operational workflows
+- Risk identification
+- Decision support systems
 
-- Media and entertainment operations
-- Vendor and contract management
-- Risk identification and decision support
+Highly relevant to:
 
-## Author
+- Media & entertainment
+- Vendor management
+- Compliance & risk teams
+
+## 👩‍💻 Author
 
 Stefanie Versace
-Security Studies Graduate | Cybersecurity & Threat Intelligence
+Security Studies Graduate | Cybersecurity | Threat Intelligence
 
-**⭐ If you found this project interesting, feel free to star the repo!**
+**⭐ If you found this useful, feel free to star the repo!**
