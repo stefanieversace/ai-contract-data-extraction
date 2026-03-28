@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "agreement_type": { "type": ["string", "null"] },
+    "parties": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "effective_date": { "type": ["string", "null"] },
+    "term_length": { "type": ["string", "null"] },
+    "payment_terms": { "type": ["string", "null"] },
+    "auto_renewal": { "type": ["boolean", "null"] },
+    "termination_clause": { "type": ["string", "null"] },
+    "governing_law": { "type": ["string", "null"] },
+    "confidentiality": { "type": ["string", "null"] },
+    "indemnity": { "type": ["string", "null"] },
+    "exclusivity": { "type": ["boolean", "null"] },
+    "key_risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "reviewer_notes": { "type": ["string", "null"] },
+    "confidence_score": { "type": ["number", "null"] },
+    "field_confidence": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    }
+  },
+  "required": [
+    "agreement_type",
+    "parties",
+    "effective_date",
+    "term_length",
+    "payment_terms",
+    "auto_renewal",
+    "termination_clause",
+    "governing_law",
+    "confidentiality",
+    "indemnity",
+    "exclusivity",
+    "key_risks",
+    "reviewer_notes",
+    "confidence_score",
+    "field_confidence"
+  ]
+}
