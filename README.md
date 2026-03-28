@@ -59,17 +59,14 @@ Final Analyst Output (JSON + Tables)
 
 ## 📸 Demo 
 
-<p align="center">
-  <img src="docs/screenshots/pipeline_run.png" width="700">
-</p>
+### Pipeline Execution
+![Pipeline Run](docs/screenshots/pipeline_run.png)
 
-<p align="center">
-  <img src="docs/screenshots/final_output.png" width="700">
-</p>
+### Final Output
+![Final Output](docs/screenshots/final_output.png)
 
-<p align="center">
-  <img src="docs/screenshots/risk_flags.png" width="700">
-</p>
+### Risk Flags
+![Risk Flags](docs/screenshots/risk_flags.png)
 
 ---
 
