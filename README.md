@@ -37,7 +37,7 @@ This project demonstrates an **end-to-end AI-assisted workflow** that:
 
 ## ⚙️ End-to-End Pipeline
 
-
+```
 Contract Document
 ↓
 Extraction (Pattern / LLM-ready)
@@ -47,7 +47,7 @@ Validation & Normalisation
 Risk Flagging Engine
 ↓
 Final Analyst Output (JSON + Tables)
-
+```
 
 ---
 
@@ -177,17 +177,6 @@ This system identifies high-risk contract elements such as:
 ⚠️ Broad indemnity language
 
 ➡️ This transforms the project from data extraction → decision support system
-
-## 📓 Notebook Demo
-
-jupyter notebook notebooks/demo_walkthrough.ipynb
-
-Includes:
-
-- Full pipeline walkthrough
-- Structured outputs
-- Analyst-friendly tables
-- Risk insights
 
 ## 🧠 Analyst Insights
 
