@@ -1,4 +1,5 @@
-# 🚀 AI Contract Intelligence for Media Agreements
+<h1 align="center">🚀 AI Contract Intelligence for Media Agreements</h1>
+
 
 <p align="center">
   <b>AI-powered pipeline for extracting, validating, and risk-flagging contract data</b><br>
@@ -11,6 +12,11 @@
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
   <img src="https://img.shields.io/badge/Focus-Contract%20Intelligence-orange?style=for-the-badge">
 </p>
+
+## 🌐 Live App
+
+👉 **Try it here:**  
+https://stefanieversace-ai-contract-data-extraction-app-wcsat8.streamlit.app/
 
 ---
 
