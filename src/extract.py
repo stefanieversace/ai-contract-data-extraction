@@ -6,11 +6,7 @@ from typing import Any, Dict, List, Optional
 
 class ContractExtractor:
     """
-    Lightweight contract field extractor.
-
-    This version uses deterministic pattern matching so the project works
-    without requiring a paid API key. Later, you can swap the extraction
-    logic for an LLM call while keeping the same output structure.
+    Lightweight contract field extractor using deterministic pattern matching.
     """
 
     def __init__(self) -> None:
@@ -24,40 +20,40 @@ class ContractExtractor:
                 r"(talent agreement)",
                 r"(advertising insertion order)",
                 r"(non-disclosure agreement)",
-                r"(nda)"
+                r"(nda)",
             ],
             "effective_date": [
                 r"effective date[:\s]+([A-Z][a-z]+ \d{1,2}, \d{4})",
                 r"dated as of[:\s]+([A-Z][a-z]+ \d{1,2}, \d{4})",
-                r"effective as of[:\s]+([A-Z][a-z]+ \d{1,2}, \d{4})"
+                r"effective as of[:\s]+([A-Z][a-z]+ \d{1,2}, \d{4})",
             ],
             "payment_terms": [
                 r"(net\s+\d{1,3})",
                 r"payment terms[:\s]+([A-Za-z0-9\s\-]+)",
-                r"invoice[s]? payable within (\d{1,3}\s+days)"
+                r"invoice[s]? payable within (\d{1,3}\s+days)",
             ],
             "governing_law": [
                 r"governed by the laws of ([A-Za-z\s]+)",
-                r"governing law[:\s]+([A-Za-z\s]+)"
+                r"governing law[:\s]+([A-Za-z\s]+)",
             ],
             "term_length": [
                 r"term of (\d{1,2}\s+(?:month|months|year|years))",
                 r"initial term[:\s]+(\d{1,2}\s+(?:month|months|year|years))",
-                r"for a period of (\d{1,2}\s+(?:month|months|year|years))"
+                r"for a period of (\d{1,2}\s+(?:month|months|year|years))",
             ],
             "termination_clause": [
                 r"(termination for convenience[^.]+[.])",
                 r"(termination for cause only[^.]*[.])",
                 r"(either party may terminate[^.]+[.])",
-                r"(this agreement may be terminated[^.]+[.])"
+                r"(this agreement may be terminated[^.]+[.])",
             ],
             "confidentiality": [
                 r"(confidentiality[^.]+[.])",
-                r"(confidential information[^.]+[.])"
+                r"(confidential information[^.]+[.])",
             ],
             "indemnity": [
-                r"(indemnif(?:y|ication)[^.]+[.])"
-            ]
+                r"(indemnif(?:y|ication)[^.]+[.])",
+            ],
         }
 
     def extract(self, text: str) -> Dict[str, Any]:
@@ -78,7 +74,7 @@ class ContractExtractor:
             "key_risks": [],
             "reviewer_notes": None,
             "confidence_score": None,
-            "field_confidence": {}
+            "field_confidence": {},
         }
 
         result["field_confidence"] = self._score_fields(result)
@@ -100,22 +96,17 @@ class ContractExtractor:
             return None
 
         value_lower = value.lower().strip()
+        if re.fullmatch(r"\d{1,3}\s+days", value_lower):
+            match = re.search(r"(\d{1,3})", value_lower)
+            if match:
+                return "Net " + match.group(1)
 
-    if re.fullmatch(r"\d{1,3}\s+days", value_lower):
-    match = re.search(r"(\d{1,3})", value_lower)
-    if match:
-        return "Net " + match.group(1)
-return value.title()
+        return value.title()
 
     def _extract_parties(self, text: str) -> List[str]:
-        """
-        Tries to find patterns like:
-        - between Company A and Company B
-        - by and between Company A and Company B
-        """
         patterns = [
             r"between\s+(.+?)\s+and\s+(.+?)(?:\n|\.|,)",
-            r"by and between\s+(.+?)\s+and\s+(.+?)(?:\n|\.|,)"
+            r"by and between\s+(.+?)\s+and\s+(.+?)(?:\n|\.|,)",
         ]
 
         parties: List[str] = []
@@ -137,11 +128,11 @@ return value.title()
             r"automatically renew",
             r"auto[-\s]?renew",
             r"renew for successive",
-            r"renewal term"
+            r"renewal term",
         ]
         negative_patterns = [
             r"shall not automatically renew",
-            r"no automatic renewal"
+            r"no automatic renewal",
         ]
 
         for pattern in negative_patterns:
@@ -155,10 +146,10 @@ return value.title()
         return None
 
     def _detect_exclusivity(self, text: str) -> Optional[bool]:
-        if re.search(r"\bexclusive\b|\bexclusivity\b", text, flags=re.IGNORECASE):
-            return True
         if re.search(r"\bnon-exclusive\b|\bnonexclusive\b", text, flags=re.IGNORECASE):
             return False
+        if re.search(r"\bexclusive\b|\bexclusivity\b", text, flags=re.IGNORECASE):
+            return True
         return None
 
     def _score_fields(self, result: Dict[str, Any]) -> Dict[str, float]:
@@ -190,14 +181,12 @@ return value.title()
     @staticmethod
     def _clean_value(value: str) -> str:
         value = re.sub(r"\s+", " ", value)
-        value = value.strip(" .,:;")
-        return value
+        return value.strip(" .,:;")
 
     @staticmethod
     def _clean_party_name(value: str) -> str:
         value = re.sub(r"\s+", " ", value)
-        value = value.strip(" .,:;()")
-        return value
+        return value.strip(" .,:;()")
 
     @staticmethod
     def _normalise_whitespace(text: str) -> str:
@@ -221,7 +210,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output",
         default="outputs/extracted_json/contract_output.json",
-        help="Path to save extracted JSON"
+        help="Path to save extracted JSON",
     )
     args = parser.parse_args()
 
@@ -231,4 +220,4 @@ if __name__ == "__main__":
     save_json(extracted, args.output)
 
     print(json.dumps(extracted, indent=2))
-    print(f"\nSaved to: {args.output}")
+    print("\nSaved to: {}".format(args.output))
