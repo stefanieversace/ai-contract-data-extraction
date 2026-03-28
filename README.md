@@ -60,14 +60,20 @@ Final Analyst Output (JSON + Tables)
 ## 📸 Demo 
 
 ### Pipeline Execution
+
 ![Pipeline Run](docs/screenshots/pipeline_run.png)
 
-### Final Output
+---
+
+### Final Structured Output
+
 ![Final Output](docs/screenshots/final_output.png)
 
-### Risk Flags
-![Risk Flags](docs/screenshots/risk_flags.png)
+---
 
+### Risk Detection
+
+![Risk Flags](docs/screenshots/risk_flags.png)
 ---
 
 ## 📂 Project Structure
