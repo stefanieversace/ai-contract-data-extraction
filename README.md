@@ -89,11 +89,11 @@ The evaluation highlights both strengths and limitations of LLM-based extraction
 
 ## Tech Stack
 
--Python
--LLM APIs (OpenAI / similar)
--JSON Schema / Pydantic
--pandas
--Jupyter Notebooks
+- Python
+- LLM APIs (OpenAI / similar)
+- JSON Schema / Pydantic
+- pandas
+- Jupyter Notebooks
 
 ## Project Structure
 
